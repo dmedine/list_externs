@@ -1,0 +1,19 @@
+#N canvas 0 22 629 340 10;
+#X obj 40 152 listorder;
+#X obj 40 173 print;
+#X text 33 215 the sorting algorithm is the classic 'bubble sort';
+#X msg 198 137 0;
+#X text 32 25 listorder sorts values from small to big by default;
+#X text 237 137 zero = big to small order;
+#X msg 41 107 step 2;
+#X msg 40 60 4 5 3 6 2 7.6 foo bark;
+#X text 237 163 nonzero = small to big;
+#X msg 197 161 1;
+#X text 101 102 step will order segments of the list by the value of
+their first member;
+#X text 203 60 strings are equal to 0;
+#X connect 0 0 1 0;
+#X connect 3 0 0 1;
+#X connect 6 0 0 0;
+#X connect 7 0 0 0;
+#X connect 9 0 0 1;

@@ -1,0 +1,187 @@
+#N canvas 192 25 981 716 10;
+#X obj 140 194 loadbang;
+#X obj 93 346 print list;
+#X obj 119 324 print indeces;
+#X obj 67 369 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 15 88 listorder;
+#X obj 16 20 tabletool;
+#X obj 67 302 listtool;
+#X obj 67 237 list append;
+#X obj 67 258 list trim;
+#X obj 67 200 r ltin;
+#X obj 208 258 loadbang;
+#X text 258 164 [listtool]'s functions:;
+#N canvas 511 63 492 633 info-request 0;
+#X msg 14 62 min;
+#X msg 13 9 size;
+#X msg 48 63 max;
+#X msg 30 156 nearest 3.1;
+#X obj 13 30 s ltin;
+#X obj 14 104 s ltin;
+#X text 61 10 <-find the length of a list;
+#X obj 15 193 s ltin;
+#X text 80 60 <-find the min or max values in the list and their indeces
+;
+#X msg 15 227 greater 5;
+#X msg 37 250 greater_equal 5;
+#X msg 55 272 less 2;
+#X msg 71 295 less_equal 2;
+#X obj 15 336 s ltin;
+#X text 106 157 <-report the index and value of nearest value;
+#X text 82 128 <-report the indeces of a match \, and how many matches
+;
+#X msg 15 131 equals 6;
+#X text 151 225 <-these functions return from all three outlets. the
+'info' \, (float) outlet says how many values from the list meet the
+requirement. the 'list' outlet packs them all into a list and spits
+that list out. the 'indeces' outlet reports (as always) the indeces
+of those values;
+#X msg 17 551 choose;
+#X obj 17 572 s ltin;
+#X text 73 550 <-choose a random value and report its index;
+#X msg 16 371 sum;
+#X msg 32 392 mean;
+#X msg 50 418 product;
+#X msg 61 442 geomean;
+#X msg 83 467 std;
+#X obj 16 496 s ltin;
+#X text 102 382 <-get the sum \, mean \, product \, geometric mean
+\, or standard deviation of the items in the list. recall that you
+cannot take the geometric mean of a group of numbers if any members
+of that list are negative.;
+#X connect 0 0 5 0;
+#X connect 1 0 4 0;
+#X connect 2 0 5 0;
+#X connect 3 0 7 0;
+#X connect 9 0 13 0;
+#X connect 10 0 13 0;
+#X connect 11 0 13 0;
+#X connect 12 0 13 0;
+#X connect 16 0 7 0;
+#X connect 18 0 19 0;
+#X connect 21 0 26 0;
+#X connect 22 0 26 0;
+#X connect 23 0 26 0;
+#X connect 24 0 26 0;
+#X connect 25 0 26 0;
+#X restore 310 184 pd info-request;
+#X text 222 323 [listtool] has three outlets. the first \, 'info' \,
+returns a float \, the second \, 'list' and third \, 'indeces' \, return
+lists. some functions return from one \, two or all three outlets \,
+based on their nature. the second outlet is reserved for new lists
+that [listtool] cooks up. the third outlet returns index values (starting
+from 0) corresponding to the left inlet list.;
+#N canvas 522 28 481 467 math-funcs 0;
+#X msg 14 134 integrate;
+#X msg 31 158 differentiate;
+#X msg 14 10 add;
+#X msg 32 34 subtract;
+#X msg 50 58 multiply;
+#X msg 60 80 divide;
+#X obj 14 106 s ltin;
+#X obj 14 223 s ltin;
+#X text 102 27 <-do thes functions on two lists. this will generate
+a new list conatining these values.;
+#X text 123 123 <-integrate generates a list wherein the value of its
+nth member = l(n) + l(n-1) of the old list. differentiating is the
+same \, but with subtractraction rather than addition;
+#X obj 14 380 s ltin;
+#X msg 14 262 euclid;
+#X msg 48 188 dot;
+#X text 93 186 <-find the dot product between two lists;
+#X text 76 264 <-find the euclidean or 'taxi' distance between two
+lists. if one is larger \, euclid finds the distance between the smaller
+list (of length 'n') and the first n values of the larger list;
+#X msg 34 290 taxi;
+#X msg 46 327 corr;
+#X connect 0 0 7 0;
+#X connect 1 0 7 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 0;
+#X connect 4 0 6 0;
+#X connect 5 0 6 0;
+#X connect 11 0 10 0;
+#X connect 12 0 7 0;
+#X connect 15 0 10 0;
+#X connect 16 0 10 0;
+#X restore 427 184 pd math-funcs;
+#N canvas 0 22 557 418 alteration-funcs 0;
+#X msg 72 88 offset 0.666;
+#X msg 9 264 shift -1;
+#X msg 31 286 shift0 3;
+#X msg 50 65 scale 0.5;
+#X msg 29 173 invert;
+#X msg 50 198 reverse;
+#X msg 64 331 remove0 4;
+#X msg 49 309 remove 4;
+#X msg 7 148 const 0.999 1 3;
+#X msg 8 14 normalize 1 0;
+#X msg 23 40 normalize_sum 2;
+#X obj 8 124 s ltin;
+#X obj 7 228 s ltin;
+#X obj 9 371 s ltin;
+#X text 104 265 <-shift the list by a specified amount \, and wrap.
+shift0 zeroes out the shifted amount rather than wrapping.;
+#X text 145 308 <-remove a value at the specified index \, or replace
+that value with zero by sending the remove0 command;
+#X text 122 148 <-insert a constant value within a specified index
+range;
+#X text 111 188 <-invert or reverse the list;
+#X text 164 71 <-scale and offset the list by a specified value;
+#X text 118 12 <-normalize to a specified range. normalize_sum normalizes
+so that the values in the new list sum to a specified value;
+#X connect 0 0 11 0;
+#X connect 1 0 13 0;
+#X connect 2 0 13 0;
+#X connect 3 0 11 0;
+#X connect 4 0 12 0;
+#X connect 5 0 12 0;
+#X connect 6 0 13 0;
+#X connect 7 0 13 0;
+#X connect 8 0 12 0;
+#X connect 9 0 11 0;
+#X connect 10 0 11 0;
+#X restore 530 184 pd alteration-funcs;
+#X text 36 437 WARNING!! there are two essential details to remember
+when using [listtool]. 1 remember that index values start from zero
+\, both for the input and output. 2 when calling a function with [listtool]
+\, you must give the correct number of numeric arguments \, or else
+you will alter the list of values that you are sending \, and all sorts
+of other things may go haywire as well.;
+#X msg 140 215 1 6 0.7 -8;
+#X msg 208 286 -1 4 1 5;
+#X text 292 229 [listtool]'s left inlet takes a list made of three
+elements: a function call \, possible arguments (some functions don't
+take arguments) \, and a list of values. here I use a basic technique
+for flexible use of [listtool] using [list append] and [list trim].
+some of [listtool]'s functions operate on two lists. the right inlet
+is for this second list.;
+#N canvas 0 22 638 507 array-funcs 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array list-array 4 float 2;
+#X coords 0 10 4 -10 200 140 1;
+#X restore 237 82 graph;
+#X text 150 231 there are other ways to do this in Pd \, but for convenience
+\, you can use this to 'undump' a list to a table;
+#X obj 83 138 s ltin;
+#X msg 82 118 table list-array;
+#X connect 3 0 2 0;
+#X restore 675 184 pd array-funcs;
+#X text 89 16 [listtool] is designed as a companion object to William
+Brent's [tabletool]. a number of the algorithms in [listtool] are direct
+copies from William's code \, but not all.;
+#X text 88 82 a number of [tabletool]'s functions are unnecessary for
+[listtool] (ie 'concatenate' is already possible with [list]. there
+are no sorting functions either \, for sorting lists in a variety of
+ways use my other list-oriented external [listorder].;
+#X connect 0 0 17 0;
+#X connect 6 0 3 0;
+#X connect 6 1 1 0;
+#X connect 6 2 2 0;
+#X connect 7 0 8 0;
+#X connect 8 0 6 0;
+#X connect 9 0 7 0;
+#X connect 10 0 18 0;
+#X connect 17 0 7 1;
+#X connect 18 0 6 1;

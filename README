@@ -1,0 +1,35 @@
+[listtool] and [listorder] are utilities for dealing with lists in Pd. These are mostly just for convenience, but [listorder] does have some nice sorting options that are pretty gnarly to do in Pd without an extern.
+
+building:
+---------
+Linux:
+Drop the list_externs folder into Pd's extra folder and hit 
+
+> make
+
+in a terminal. You can also specify the include path (needed to find m_pd.h) by typing:
+
+> make LINUXINCLUDE=-I<full path to pd's src folder>
+
+where the full path is something like /home/dmedine/Software/pd-0.45-4/src 
+
+Mac:
+You will need to change the fourth line of the makefile from:
+
+current: pd_linux
+
+to:
+
+current: pd_darwin
+
+Or, you can specify the extension by adding:
+
+EXT=pd_darwin 
+
+to your make command.
+
+then, it's the same as for linux. The makefile uses the same variable LINUXINCLUDE for both linux and mac build options, so the same deal applies.
+
+installing:
+-----------
+The folder list_externs has two externs (assuming the build was successful) and two helpfiles in it. You will have to specify the path to these files in the Pd path environment. 
